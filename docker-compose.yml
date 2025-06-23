@@ -1,0 +1,17 @@
+# This is only for testing purposes
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - XLWINGS_LITE_VERSION=1.0.0.0-17
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./packages:/packages
+      - ./certs:/etc/certs
+    environment:
+      - XLWINGS_HOSTNAME=localhost:8000
+      - XLWINGS_LICENSE_KEY=
+      - TLS_BLOCK=tls /etc/certs/localhost+2.pem /etc/certs/localhost+2-key.pem
